@@ -2,6 +2,7 @@ const path = require('path');
 
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
+var webpack = require('webpack');
 const {
   merge
 } = require('webpack-merge');
@@ -18,6 +19,9 @@ module.exports = merge(common, {
     static: path.join(__dirname, 'resources', 'public')
   },
   plugins: [
-    new ReactRefreshWebpackPlugin()
+    new ReactRefreshWebpackPlugin(),
+    new webpack.HotModuleReplacementPlugin({
+      exclude: [/node_modules/, /bootstrap\.tsx$/]
+    })
   ]
 });
